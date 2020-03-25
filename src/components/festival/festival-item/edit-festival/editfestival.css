@@ -1,0 +1,19 @@
+body{
+    padding: 1rem;
+}
+
+.popup-example{}
+    .vs-input {
+        float: left;
+        width: 50%;
+        margin: 10px;
+        margin-top: 5px;
+    }
+        .con-select{
+            margin-left: 10px;
+            width: 50%;
+            margin-bottom: 10px;
+        }
+
+
+
