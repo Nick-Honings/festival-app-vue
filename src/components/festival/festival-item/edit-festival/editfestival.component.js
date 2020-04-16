@@ -1,15 +1,19 @@
+
 export default {
+
+
     name: "EditFestival",
 
     props:{
         festival: Object,
-        // popupActive: false,
+        popupActive: false,
+        isSaved: false
     },
 
     data(){
         return {
-            popupActive: true,
-            isSaved: false
+            //popupActive: true,
+            // isSaved: false
         }
     },
 
@@ -17,9 +21,9 @@ export default {
 
         saveEdit(event){
             this.$log.debug('Try to save event: ', event);
-            // this.popupActive = false;
+            //this.isSaved = true;
+            //this.popupActive = false;
             this.$emit('edit-event', event);
-            this.isSaved = true;
         }
     },
 

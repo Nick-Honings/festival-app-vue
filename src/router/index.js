@@ -16,6 +16,16 @@ const routes = [
     name: 'Events',
     component: () => import('../views/festival/festival')
   },
+  {
+    path: '/events/add',
+    name: 'Test',
+    component: () => import('../components/festival/add/AddView')
+  },
+  {
+    path: '/events/:id/info',
+    name: 'Event information',
+    component: () => import('../components/festival/festival-summary/FestivalSummary')
+  }
 
 
 ]

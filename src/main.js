@@ -11,6 +11,9 @@ import 'vuesax/dist/vuesax.css';
 import 'material-icons/iconfont/material-icons.css';
 import router from './router'
 
+import Vuelidate from 'vuelidate';
+
+
 Vue.config.productionTip = false;
 
 const options = {
@@ -27,6 +30,7 @@ const options = {
 Vue.use(VueLogger, options);
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
+Vue.use(Vuelidate);
 
 //Configure this to only add the used components
 Vue.use(Vuesax);

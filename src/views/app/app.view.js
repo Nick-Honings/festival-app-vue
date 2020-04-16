@@ -1,4 +1,3 @@
-import AddFestival from '../../components/festival/add-festival/AddFestival';
 import EditFestival from '../../components/festival/festival-item/edit-festival/EditFestival';
 
 import Festivals from '../../views/festival/festival.vue';
@@ -11,7 +10,6 @@ const app = {
     components: {
         Sidebar,
         Header,
-        AddFestival,
         EditFestival,
         Festivals,
     },
@@ -21,6 +19,6 @@ const app = {
 
         }
     }
-}
+};
 
 export default app;

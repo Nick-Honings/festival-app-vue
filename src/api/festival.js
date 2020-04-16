@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+
 const SERVER_URL = 'http://localhost:9000';
 
 const instance = axios.create({
@@ -9,7 +10,7 @@ const instance = axios.create({
 export default {
 
     // Create
-    createNew: (item) => instance.post('festival/add', { name: item.name, price: item.price, date: item.date}),
+    createNew: (item) => instance.post('festival/add', item),
 
     // Read
     getAll: () => instance.get('festival/all', {
@@ -21,8 +22,16 @@ export default {
 
 
     // Update
-    updateForId: (id, name, price) => instance.put('festivals/' + id, {name: name, price: price}),
+    update: (festival) => instance.put('festival/update', festival),
 
     // Delete
-    removeForId: (id) => instance.delete('festivals/' + id)
+    removeForId: (id) => instance.delete('festival/' + id),
+
+    // Get by Id
+    getById: (id) => instance.get('festival/' + id, {
+        transformResponse : [function (data) {
+            console.log(data);
+            return JSON.parse(data)
+        }]
+    })
 }

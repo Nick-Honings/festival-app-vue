@@ -1,28 +1,4 @@
 <template>
-
-<!--        <div class="card" style="width: 18rem;">-->
-<!--            <div class="card-body">-->
-<!--                <div v-if="!canEdit">-->
-<!--                    <h5 class="card-title">{{festival.name}}</h5>-->
-<!--                    <h6 class="card-subtitle mb-2 text-muted">Category: </h6>-->
-<!--                    <p class="card-text">Price: {{festival.price}}</p>-->
-<!--                    <p class="card-text">Date: {{festival.date}}</p>-->
-<!--                    <button @click="beginEdit">Edit</button>-->
-<!--                </div>-->
-<!--                <div v-else>-->
-<!--                    <input type="text" v-model="name" name="name" :placeholder="festival.name">-->
-<!--                    <date-pick-->
-<!--                            v-model="date"-->
-<!--                            :format="'DD.MM.YYYY'"-->
-<!--                    ></date-pick>-->
-<!--                    <button @click="endEdit">Edit</button>-->
-<!--                </div>-->
-
-
-<!--            </div>-->
-<!--        </div>-->
-
-
     <vs-card class="cardx" fixedHeight>
 
 
@@ -40,27 +16,45 @@
                 </vs-list-header>
                 <vs-list-item title="Date" :subtitle="getTimeString(festival.date)"></vs-list-item>
                 <vs-list-item title="Price" :subtitle="'€' + festival.price"></vs-list-item>
+
+                <vs-collapse>
+                    <vs-collapse-item @click="this.expanded = !this.expanded" :open="expanded">
+                        <div slot="header">
+                            {{canExpand}}
+                        </div>
+                        <vs-list-item title="Location" :subtitle="festival.location"></vs-list-item>
+                        <vs-list-item title="Tme" :subtitle="festival.time"></vs-list-item>
+                        <vs-list v-for="(area, index) in filter(2)" :key="index">
+                            <Area v-bind:area="area"/>
+                        </vs-list>
+                        <vs-button
+                                type="line"
+                                line-origin="left"
+                                color="primary"
+
+                                :to="{name: 'Event information', params: {id: festival.id}}">Show all</vs-button>
+
+                    </vs-collapse-item>
+                </vs-collapse>
+
             </vs-list>
         </div>
 
         <div slot="footer">
             <vs-row vs-justify="flex-end">
-<!--                <vs-button @click="popupActivo2=true" color="primary" type="filled">Open Popup</vs-button>-->
+                <vs-button type="line" line-origin="left" color="danger" icon="favorite"></vs-button>
 
-                <vs-button type="gradient" color="danger" icon="favorite"></vs-button>
-                <vs-button type="gradient" color="primary" icon="create" @click="canEdit=true"></vs-button>
-                <EditFestival v-if="canEdit" :festival="festival" v-on:edit-event="endEdit"/>
-
-
+                <EditDialog
+                        :festival="festival"
+                        v-on:edit-event="endEdit"
+                />
+                <vs-button type="line" line-origin="left" color="danger" icon="delete" @click="deleteEvent(festival.id)"></vs-button>
             </vs-row>
         </div>
     </vs-card>
-
-
-
-
 </template>
 
-<script src="./festivalitem.component.js"></script>
+<script src="./festivalitem.component.js">
+</script>
 
 <style scoped src="./festivalitem.css"></style>

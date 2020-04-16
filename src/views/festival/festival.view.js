@@ -1,16 +1,18 @@
 import api from '../../api/festival';
 import FestivalItem from "../../components/festival/festival-item/FestivalItem";
-import AddFestival from "../../components/festival/add-festival/AddFestival";
+import AddFestival2 from "../../components/festival/add/AddFestival2";
+
 
 const FestivalPage = {
     name: 'festival.vue',
     components: {
         FestivalItem,
-        AddFestival
+        AddFestival2
     },
 
     data: function () {
         return{
+            componentKey: 0,
             festivals: [],
             newFestival: '',
             editedFestival: null,
@@ -40,14 +42,10 @@ const FestivalPage = {
 
     methods: {
 
-        testMethod: function(message){
-            console.log("This is called: ", message)
-        },
-
         add(festivalItem) {
             this.$log.info("Trying to add new event...");
 
-            api.createNew(festivalItem).then( (response) => {
+            api.createNew(festivalItem).then((response) => {
                 this.$log.debug("New event created: ", response);
                 this.festivals = [...this.festivals, festivalItem];
                 // this.festivals.push({
@@ -61,58 +59,28 @@ const FestivalPage = {
         },
 
 
-        removeFestival: function (festival) {
-            api.removeForId(festival.id).then(() => {
-                this.$log.debug("Festival removed: ", festival);
-                this.festivals.splice(this.todos.indexOf(festival), 1);
-            }).catch((error) => {
-                this.$log.debug(error);
-                this.error = "Failed to remove festival"
-            });
+        deleteEvent(id){
+            api.removeForId(id).then((response) =>{
+                this.$log.info(response);
+                if(response.status == 200){
+                    this.$vs.notify({
+                        color:'success',
+                        title:'Event deleted successfully!',
+                    })
+                    this.festivals = this.festivals.filter(v => v.id != id);
+                }
+                else{
+                    this.$vs.notify({
+                        color: 'danger',
+                        title: 'Whoops, something went wrong!',
+                        text: 'Please try again'
+                    })
+                }
+                //this.$emit('delete-event');
+            })
         },
 
-        edit(event) {
-            return event;
-        },
 
-        editFestival: function (festival) {
-            this.beforeEditCache = festival.name;
-            this.editedFestival = festival
-        },
-
-        doneEdit: function (festival) {
-            if(!this.editedFestival){
-                return;
-            }
-            this.$log.info("Festival updated", festival);
-
-            api.updateForId(festival.id, festival.name.trim(), festival.price).then((response) =>{
-                this.$log.info("Festival updated: ", response.data);
-                this.editedFestival = null;
-                festival.name = festival.name.trim();
-            }).catch((error) => {
-                this.$log.debug(error);
-                this.cancelEdit(festival);
-                this.error = "Failed to update festival";
-            });
-
-            if(!festival.name){
-                this.removeFestival(festival);
-            }
-        },
-
-        cancelEdit: function (festival) {
-            this.editedFestival = null
-            festival.title = this.beforeEditCache
-        },
-
-        // removeCompleted: function () {
-        //   this.festival = filters.active(this.festival)
-        // },
-
-        handleErrorClick: function () {
-            this.error = null;
-        },
     },
 
     directives: {
