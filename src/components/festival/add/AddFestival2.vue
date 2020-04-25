@@ -108,7 +108,6 @@
                     time: this.festival.time
                 }
                 //this.$log.debug(this.formatTimeString(this.festival.date));
-                this.$log.debug(newEvent);
                 //this.$emit('add-event', newEvent);
                 api.createNew(newEvent).then((response) => {
                     if(response.status === 200){

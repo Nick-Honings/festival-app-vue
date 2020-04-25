@@ -90,7 +90,7 @@
 
             setFestival(festival){
                 this.festival = festival;
-                this.$log.debug("The festival", this.festival);
+                this.$log.debug("The festival properties: ", this.festival);
                 this.changeView(1);
                 this.changeProgress(33);
             },
@@ -125,11 +125,11 @@
                     price: this.festival.price,
                     location: this.festival.location,
                     time: this.festival.time,
-                    area: this.areas
+                    areas: this.areas
                 }
 
-                this.$log.debug(newEvent);
-                //this.$emit('add-event', newEvent);
+                this.$log.debug("the created event: ", newEvent);
+                this.$emit('add-event', newEvent);
                 api.createNew(newEvent).then((response) => {
                     if(response.status === 200){
                         this.$vs.notify({

@@ -3,7 +3,12 @@ import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import App from './views/app/App';
 import Vuesax from 'vuesax';
 
+
+
+
+
 import VueLogger from 'vuejs-logger';
+
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
@@ -32,8 +37,27 @@ Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 Vue.use(Vuelidate);
 
+
+
 //Configure this to only add the used components
 Vue.use(Vuesax);
+
+import Vuetify from 'vuetify'
+import DaySpanVuetify from 'dayspan-vuetify'
+import 'vuetify/dist/vuetify.css'
+import 'material-design-icons-iconfont/dist/material-design-icons.css'
+import 'dayspan-vuetify/dist/lib/dayspan-vuetify.min.css'
+
+Vue.config.productionTip = false
+
+Vue.use(Vuetify);
+
+Vue.use(DaySpanVuetify, {
+  methods: {
+    getDefaultEventColor: () => '#1976d2'
+  }
+});
+
 
 new Vue({
   el: '#app',

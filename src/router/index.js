@@ -25,6 +25,11 @@ const routes = [
     path: '/events/:id/info',
     name: 'Event information',
     component: () => import('../components/festival/festival-summary/FestivalSummary')
+  },
+  {
+    path: '/calendar',
+    name: 'Calendar',
+    component: () => import('../views/calendar/Calendar')
   }
 
 
