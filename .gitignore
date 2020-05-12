@@ -136,5 +136,7 @@ dist/
 npm-debug.log
 yarn-error.log
 
+auth_config.json
+
 # End of https://www.gitignore.io/api/vue,vuejs,intellij
 

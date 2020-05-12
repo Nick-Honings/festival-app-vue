@@ -1,10 +1,11 @@
 import axios from 'axios';
+import { SERVER_URL} from "./request-config";
+import { getHeaders } from './request-config';
 
-
-const SERVER_URL = 'http://localhost:9000';
 
 const instance = axios.create({
-    baseURL: SERVER_URL
+    baseURL: SERVER_URL,
+    headers: getHeaders()
 });
 
 export default {

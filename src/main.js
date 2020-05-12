@@ -3,7 +3,7 @@ import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import App from './views/app/App';
 import Vuesax from 'vuesax';
 
-
+import store from '../src/auth/index'
 
 
 
@@ -18,6 +18,9 @@ import router from './router'
 
 import Vuelidate from 'vuelidate';
 
+import { domain, clientId } from '../auth_config.json';
+import { Auth0Plugin } from "./auth/index23";
+
 
 Vue.config.productionTip = false;
 
@@ -30,6 +33,18 @@ const options = {
   separator: '|',
   showConsoleColors: true
 };
+
+Vue.use(Auth0Plugin, {
+  domain,
+  clientId,
+  onRedirectCallback: appState => {
+    router.push(
+        appState && appState.targetUrl
+            ? appState.targetUrl
+            : window.location.pathname
+    );
+  }
+});
 
 //Vue.use(BootstrapVue);
 Vue.use(VueLogger, options);
@@ -63,5 +78,6 @@ new Vue({
   el: '#app',
   template: '<App/>',
   router,
+  store,
   components: { App }
 });
