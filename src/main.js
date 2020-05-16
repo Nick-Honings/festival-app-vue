@@ -2,27 +2,19 @@ import Vue from 'vue';
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import App from './views/app/App';
 import Vuesax from 'vuesax';
-
 import store from '../src/auth/index'
-
-
-
 import VueLogger from 'vuejs-logger';
-
-
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import 'vuesax/dist/vuesax.css';
 import 'material-icons/iconfont/material-icons.css';
 import router from './router'
-
 import Vuelidate from 'vuelidate';
-
 import { domain, clientId } from '../auth_config.json';
 import { Auth0Plugin } from "./auth/index23";
-
-
 Vue.config.productionTip = false;
+
+import { Carousel3d} from 'vue-carousel-3d';
 
 const options = {
   isEnabled: true,
@@ -51,7 +43,7 @@ Vue.use(VueLogger, options);
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 Vue.use(Vuelidate);
-
+Vue.use(Carousel3d);
 
 
 //Configure this to only add the used components
@@ -62,6 +54,8 @@ import DaySpanVuetify from 'dayspan-vuetify'
 import 'vuetify/dist/vuetify.css'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
 import 'dayspan-vuetify/dist/lib/dayspan-vuetify.min.css'
+import CenterContainer from "./components/layout/positioning/center-container/CenterContainer";
+import Loading from "./components/layout/loading/Loading";
 
 Vue.config.productionTip = false
 
@@ -73,6 +67,8 @@ Vue.use(DaySpanVuetify, {
   }
 });
 
+Vue.component('center-container', CenterContainer)
+Vue.component('loading', Loading)
 
 new Vue({
   el: '#app',

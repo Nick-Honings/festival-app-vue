@@ -23,6 +23,7 @@
     "stylus": "^0.54.7",
     "stylus-loader": "^3.0.2",
     "vue": "^2.6.11",
+    "vue-carousel-3d": "^0.2.0",
     "vue-date-dropdown": "^1.0.5",
     "vue-date-pick": "^1.2.1",
     "vue-form-generator": "^2.3.4",

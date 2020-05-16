@@ -1,36 +1,79 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Main from '../views/main/Main.vue';
 
+import store from '../auth';
+import Login from "../views/login/Login";
+import Account from "../views/account/Account";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
+
+const ifNotAuthenticated = (to, from, next) => {
+  if(!store.getters.isAuthenticated) {
+    next();
+    return;
+  }
+  next("/");
+};
+
+const ifAuthenticated = (to, from, next) => {
+  if (store.getters.isAuthenticated){
+    next();
+    return;
+  }
+  next("/");
+};
+
 
 const routes = [
   {
     path: '/',
-    name: 'Main',
-    component: Main
+    name: 'Home',
+    component: () => import("../views/home/Home"),
+
+  },
+  {
+    path: "/account",
+    name: "Account",
+    component: Account,
+    beforeEnter: ifAuthenticated
+  },
+  {
+    path: "/login",
+    name: "Login",
+    component: Login,
+    beforeEnter: ifNotAuthenticated
   },
   {
     path: '/events',
     name: 'Events',
-    component: () => import('../views/festival/festival')
+    component: () => import('../views/festival/festival'),
+    beforeEnter: ifAuthenticated
   },
   {
     path: '/events/add',
     name: 'Test',
-    component: () => import('../components/festival/add/AddView')
+    component: () => import('../components/festival/add/AddView'),
+    beforeEnter: ifAuthenticated
   },
   {
     path: '/events/:id/info',
     name: 'Event information',
-    component: () => import('../components/festival/festival-summary/FestivalSummary')
+    component: () => import('../components/festival/festival-summary/FestivalSummary'),
+    beforeEnter: ifAuthenticated
   },
   {
     path: '/calendar',
     name: 'Calendar',
-    component: () => import('../views/calendar/Calendar')
+    component: () => import('../views/calendar/Calendar'),
+    beforeEnter: ifAuthenticated
+  },
+  {
+    path: '/dashboard',
+    name: 'Dashboard',
+    component: () => import('../views/dashboard/Dashboard'),
+    beforeEnter: ifNotAuthenticated
   }
+
 
 
 ]
@@ -41,16 +84,5 @@ const router = new VueRouter({
   routes
 })
 
-router.beforeEach((to, from, next) => {
-  const publicPages = ['/'];
-  const authRequired = !publicPages.includes(to.path);
-  const loggedIn = localStorage.getItem('user-token');
-
-  if(authRequired && !loggedIn){
-    return next('/');
-  }
-
-  next();
-})
 
 export default router
