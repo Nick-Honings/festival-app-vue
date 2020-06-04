@@ -4,7 +4,7 @@ import AddFestival2 from "../../components/festival/add/AddFestival2";
 
 
 const FestivalPage = {
-    name: 'festival.vue',
+    name: 'FestivalPage',
     components: {
         FestivalItem,
         AddFestival2
@@ -26,7 +26,7 @@ const FestivalPage = {
 
     // Load all
     mounted() {
-        api.getAll()
+        return api.getAllByUserId(19)
             .then(response => {
                 this.$log.debug("Data loaded: ", response.data)
                 this.festivals = response.data
@@ -45,13 +45,10 @@ const FestivalPage = {
         add(festivalItem) {
             this.$log.info("Trying to add new event...");
 
-            api.createNew(festivalItem).then((response) => {
+            return api.createNew(festivalItem).then((response) => {
                 this.$log.debug("New event created: ", response);
                 this.festivals = [...this.festivals, festivalItem];
-                // this.festivals.push({
-                //   id: response.data.id,
-                //   name: festivalItem.name
-                // })
+
             }).catch((error) => {
                 this.$log.debug(error);
                 this.error = "Failed to add festival";
@@ -62,7 +59,7 @@ const FestivalPage = {
         deleteEvent(id){
             api.removeForId(id).then((response) =>{
                 this.$log.info(response);
-                if(response.status == 200){
+                if(response.status === 200){
                     this.$vs.notify({
                         color:'success',
                         title:'Event deleted successfully!',

@@ -9,29 +9,26 @@
                         type="text"
                         label="Username"
                         v-model="username"
-                        :danger="validator.isNullOrEmpty(username)"
-                        danger-text="This field can not be empty"
+
                 ></vs-input>
                 <vs-input
                         type="password"
                         label="Password"
                         v-model="password"
-                        :danger="!validator.isValidPassword(password)"
-                        danger-text="Password must be at least 6 characters long and contain at least one number, one uppercase character and one lowercase character"
+
                 />
+<!--                :danger="!validator.isValidPassword(password)"-->
+<!--                danger-text="Password must be at least 6 characters long and contain at least one number, one uppercase character and one lowercase character"-->
             </vs-col>
 
         </vs-row>
         <hr/>
         <vs-row vs-type="flex" vs-justify="space-around">
             <vs-col vs-type="flex"  vs-align="left" vs-w="22">
-                <div v-if="validator.isValidModel(validModel)">
-                    <vs-button @click="login">Login</vs-button>
 
-                </div>
-                <div v-else>
-                    <vs-button disabled>Login</vs-button>
-                </div>
+                <vs-button @click="login">Login</vs-button>
+
+
                 <div style="justify-content: right">
                     <vs-button @click="$router.push('/register')">Register</vs-button>
 
@@ -42,14 +39,6 @@
 
         </vs-row>
 
-        <vs-row>
-            <vs-col vs-type="flex" vs-align="left">
-
-            </vs-col>
-            <vs-col>
-
-            </vs-col>
-        </vs-row>
 
     </div>
 </template>
@@ -67,7 +56,7 @@
             return {
                 validModel: {
                     username: false,
-                    password: false
+                    password: true
                 },
                 username: '',
                 password: '',
@@ -101,7 +90,7 @@
             "password": function(value) {
                 this.password = value;
                 console.log("called");
-                if(validator.isNullOrEmpty(value) === false && validator.isValidPassword(value)) {
+                if(validator.isValidPassword(value)) {
                     this.validModel.password = true;
                 }
                 else {

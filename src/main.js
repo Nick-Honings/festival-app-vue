@@ -10,8 +10,8 @@ import 'vuesax/dist/vuesax.css';
 import 'material-icons/iconfont/material-icons.css';
 import router from './router'
 import Vuelidate from 'vuelidate';
-import { domain, clientId } from '../auth_config.json';
-import { Auth0Plugin } from "./auth/index23";
+import VCalendar from 'v-calendar';
+
 Vue.config.productionTip = false;
 
 import { Carousel3d} from 'vue-carousel-3d';
@@ -26,17 +26,7 @@ const options = {
   showConsoleColors: true
 };
 
-Vue.use(Auth0Plugin, {
-  domain,
-  clientId,
-  onRedirectCallback: appState => {
-    router.push(
-        appState && appState.targetUrl
-            ? appState.targetUrl
-            : window.location.pathname
-    );
-  }
-});
+
 
 //Vue.use(BootstrapVue);
 Vue.use(VueLogger, options);
@@ -44,6 +34,9 @@ Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 Vue.use(Vuelidate);
 Vue.use(Carousel3d);
+Vue.use(VCalendar, {
+  componentPrefix: 'vc'
+});
 
 
 //Configure this to only add the used components

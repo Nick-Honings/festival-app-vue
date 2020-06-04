@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="1"
+            failures="0"
+            tests="1">
+
+  <testsuite name="registerTest"
+    errors="1" failures="0" hostname="" id="" package="registerTest" skipped="0"
+    tests="1" time="5.211" timestamp="">
+  
+    <testcase name="Form Displays Warning on name" classname="registerTest" time="5.211" assertions="1">
+<system-out>[[ATTACHMENT|C:\Users\Nick Honings\Documents\Fontys\Semester 4\FUN\Project\festival-app-vue\test\selenium\screens\registerTest\Form-Displays-Warning-on-name_FAILED_May-26-2020-140957-GMT+0200-(Central-European-Summer.png]]</system-out>
+    
+      <error message="An error occurred while running .setValue() command on &lt;input[type=text&gt;: undefined; undefined" type="error">NoSuchElementError: An error occurred while running .setValue() command on &lt;input[type=text&gt;: undefined; undefined
+    at SetValue.noSuchElementError (C:\Users\Nick Honings\Documents\Fontys\Semester 4\FUN\Project\festival-app-vue\node_modules\nightwatch\lib\element\command.js:367:12)
+    at Object.errorHandler (C:\Users\Nick Honings\Documents\Fontys\Semester 4\FUN\Project\festival-app-vue\node_modules\nightwatch\lib\api\element-commands\_baseElementCommand.js:42:30)
+    at PeriodicPromise.runAction (C:\Users\Nick Honings\Documents\Fontys\Semester 4\FUN\Project\festival-app-vue\node_modules\nightwatch\lib\utils\periodic-promise.js:64:29)
+    at processTicksAndRejections (internal/process/task_queues.js:97:5)</error>
+    
+    </testcase>
+  
+
+  
+    <system-err>
+      [0;31m  NoSuchElementError: An error occurred while running .setValue() command on &lt;input[type=text&gt;: undefined; undefined
+   {&#34;value&#34;:[]}[0m
+[0;90m       at processTicksAndRejections (internal/process/task_queues.js:97:5)[0m
+    </system-err>
+  
+
+  
+  </testsuite>
+</testsuites>

@@ -1,10 +1,22 @@
 <template>
     <div id="app">
-        <Navigationbar />
+        <vs-row >
+            <vs-col vs-w="12">
+                <Navigationbar />
+            </vs-col>
+        </vs-row>
+        <vs-row>
+            <div class="layout-main">
+                <vs-col vs-w="1">
+                </vs-col>
+            </div>
+            <vs-col vs-w="11">
+                <div>
+                    <router-view/>
+                </div>
+            </vs-col>
+        </vs-row>
 
-        <div>
-            <router-view/>
-        </div>
     </div>
 </template>
 

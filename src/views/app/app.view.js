@@ -2,7 +2,7 @@ import EditFestival from '../../components/festival/festival-item/edit-festival/
 
 import Festivals from '../../views/festival/festival.vue';
 import Header from "../../components/layout/header/Header";
-import Sidebar from "../../components/layout/sidebar/Sidebar";
+import Sidebar from "../../components/sidebar/Sidebar";
 import {USER_REQUEST} from "../../auth/actions/user";
 import Navigationbar from "../../components/navigationbar/NavigationBar";
 

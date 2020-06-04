@@ -18,8 +18,6 @@
                             <div>
                                 <p>For all your activities, Events planner meets your needs!</p>
                                 <LoginForm/>
-
-
                             </div>
                         </vs-card>
                     </vs-col>

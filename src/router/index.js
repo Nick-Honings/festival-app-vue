@@ -2,7 +2,6 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 
 import store from '../auth';
-import Login from "../views/login/Login";
 import Account from "../views/account/Account";
 
 Vue.use(VueRouter);
@@ -37,12 +36,7 @@ const routes = [
     component: Account,
     beforeEnter: ifAuthenticated
   },
-  {
-    path: "/login",
-    name: "Login",
-    component: Login,
-    beforeEnter: ifNotAuthenticated
-  },
+
   {
     path: '/events',
     name: 'Events',
@@ -64,13 +58,19 @@ const routes = [
   {
     path: '/calendar',
     name: 'Calendar',
-    component: () => import('../views/calendar/Calendar'),
+    component: () => import('../views/calendar/Calendar2'),
     beforeEnter: ifAuthenticated
   },
   {
     path: '/dashboard',
     name: 'Dashboard',
     component: () => import('../views/dashboard/Dashboard'),
+    beforeEnter: ifAuthenticated
+  },
+  {
+    path: '/register',
+    name: 'Register',
+    component: () => import('../views/register/Register'),
     beforeEnter: ifNotAuthenticated
   }
 

@@ -21,6 +21,13 @@ export default {
         }]
     }),
 
+    getAllByUserId: (id) => instance.get('festival/all/' + id, {
+        transformResponse: [function (data) {
+            console.log("the data: ", data);
+            return JSON.parse(data);
+        }]
+    }),
+
 
     // Update
     update: (festival) => instance.put('festival/update', festival),

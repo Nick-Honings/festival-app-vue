@@ -9,7 +9,7 @@ const instance = axios.create({
 
 export default {
     // eslint-disable-next-line no-unused-vars
-    signUp: (user) => instance.post('users/sign-up'),
+    signUp: (user) => instance.post('users/sign-up', user),
 
     // eslint-disable-next-line no-unused-vars
     login: (user) =>

@@ -1,13 +1,8 @@
 export default{
 
     isNullOrEmpty(input){
-        if(input === null){
-            return true;
-        }
-       else if(input.length === 0){
-            return true;
-        }
-        return false;
+        return input === null || input.length === 0 || !input.replace(/\s/g, '').length;
+
     },
 
     isValidPassword(input) {
@@ -25,9 +20,34 @@ export default{
     isValidModel(model) {
         let propValues = Object.values(model);
         console.log(propValues);
-        if(propValues.includes(false)) {
-            return false;
+
+        for (let i = 0; i < propValues.length; i++) {
+            if(typeof propValues[i] !== "boolean" || propValues.includes(false)) {
+                return false;
+            }
         }
         return true;
+    },
+
+    isValidEmail(input) {
+        //let regexEmail = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
+        // simple regex expression that checks whether there is an at-sign,
+        // a period and stuff before/after/between them, no line breaks.
+        let regexEmail = /^.+@.+\..+$/;
+        if(input.match(regexEmail)){
+            console.log("good email");
+            return true;
+        }
+        return false;
+    },
+
+    passWordsMatch(expected, input){
+
+        if(expected === input){
+            console.log("Passwords match");
+            return true;
+        }
+        console.log("Passwords do not match");
+        return false;
     }
 }

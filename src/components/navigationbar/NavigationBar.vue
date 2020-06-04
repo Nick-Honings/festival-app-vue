@@ -1,12 +1,13 @@
 <template>
     <div>
-        <vs-navbar v-model="activeItem" class="nabarx">
+        <vs-navbar v-model="activeItem" class="nabarx" color="dark">
             <div slot="title">
                 <vs-navbar-title>
-                    Events Planner
+                    <h4>Events Planner</h4>
                 </vs-navbar-title>
             </div>
 
+            <p>Welcome {{name}}</p>
 
             <vs-nav-item v-if="isProfileLoaded" index="1">
                 <router-link to="/profile">Profile</router-link>
@@ -35,7 +36,7 @@
             ...mapGetters(["getProfile", "isAuthenticated", "isProfileLoaded"]),
             ...mapState({
                 authLoading: state => state.auth.status === "loading",
-                name: state => `${state.user.profile.title} ${state.user.profile.name}`
+                name: state => ` ${state.user.profile.username}`
             })
         },
 
@@ -46,5 +47,15 @@
 </script>
 
 <style scoped>
+    p {
+        color: white;
+    }
+    h4 {
+        color: white;
+    }
+    .welcomeMessage {
+        justify-content: center;
+    }
+
 
 </style>
