@@ -41,5 +41,7 @@ export default {
             console.log(data);
             return JSON.parse(data)
         }]
-    })
+    }),
+
+    setAttendance: (id, attendance) => instance.post('festival/'+id + "/attendance", {attendance: attendance}),
 }

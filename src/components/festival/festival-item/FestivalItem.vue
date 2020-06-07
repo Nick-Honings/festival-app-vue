@@ -1,18 +1,18 @@
 <template>
-    <vs-card class="cardx" fixedHeight>
+    <vs-card style="background-color: rgba(255,255,255,0.6)" class="cardx" fixedHeight>
 
 
         <div style="padding-bottom: 40px">
 
             <div slot="header">
-                <h3>{{festival.name}}</h3>
+                <h2>{{festival.name}}</h2>
             </div>
             <div slot="media">
                 <img alt="picture">
             </div>
 
-            <vs-list>
-                <vs-list-header title="General information">
+            <vs-list style="font-size: large">
+                <vs-list-header  title="General information">
                 </vs-list-header>
                 <vs-list-item title="Date" :subtitle="getTimeString(festival.date)"></vs-list-item>
                 <vs-list-item title="Price" :subtitle="'€' + festival.price"></vs-list-item>

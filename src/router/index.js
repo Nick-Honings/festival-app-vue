@@ -46,13 +46,19 @@ const routes = [
   {
     path: '/events/add',
     name: 'Test',
-    component: () => import('../components/festival/add/AddView'),
+    component: () => import('../views/add-festival/AddView'),
     beforeEnter: ifAuthenticated
   },
   {
     path: '/events/:id/info',
     name: 'Event information',
     component: () => import('../components/festival/festival-summary/FestivalSummary'),
+    beforeEnter: ifAuthenticated
+  },
+  {
+    path: '/events/:id/edit',
+    name: 'Edit event',
+    component: () => import('../components/festival/festival-item/edit-festival/EditFestivalFull'),
     beforeEnter: ifAuthenticated
   },
   {

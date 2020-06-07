@@ -48,7 +48,7 @@ const FestivalPage = {
             return api.createNew(festivalItem).then((response) => {
                 this.$log.debug("New event created: ", response);
                 this.festivals = [...this.festivals, festivalItem];
-
+                this.$router.push('/events');
             }).catch((error) => {
                 this.$log.debug(error);
                 this.error = "Failed to add festival";
@@ -64,7 +64,7 @@ const FestivalPage = {
                         color:'success',
                         title:'Event deleted successfully!',
                     })
-                    this.festivals = this.festivals.filter(v => v.id != id);
+                    this.festivals = this.festivals.filter(v => v.id !== id);
                 }
                 else{
                     this.$vs.notify({

@@ -1,5 +1,21 @@
 <template>
     <div>
+        <vs-row vs-w="12">
+            <vs-col vs-w="2"></vs-col>
+            <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="8">
+                <vs-card style="margin-top: 12px">
+                    <div slot="header">
+                        <h1>Calendar</h1>
+                    </div>
+                    <div>
+                        <span>
+                            Text
+                        </span>
+                    </div>
+                </vs-card>
+            </vs-col>
+            <vs-col vs-w="2"></vs-col>
+        </vs-row>
 
 
         <vs-row vs-w="12" >
@@ -20,14 +36,7 @@
         <vs-row>
             <vs-col vs-w="2"></vs-col>
             <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="8">
-                <vs-card style="margin-top: 12px" >
-                    <vs-list>
-                        <vs-list-header title="Upcoming"></vs-list-header>
-                        <div  v-bind:key="festival.date" v-for="festival in festivals">
-                            <vs-list-item :title="festival.name" :subtitle="festival.date"></vs-list-item>
-                        </div>
-                    </vs-list>
-                </vs-card>
+                <Upcoming :festivals="filterOnCurrentDate()" v-if="festivals"/>
             </vs-col>
             <vs-col vs-w="2"></vs-col>
         </vs-row>
@@ -36,10 +45,12 @@
 
 <script>
     import api from "../../api/festival";
+    import Upcoming from "../../components/upcoming/Upcoming";
+    import date from "../../utils/date";
 
     export default {
         name: 'Calendar2',
-        components: { },
+        components: {Upcoming },
         data () {
             return {
                 festivals: '',
@@ -98,6 +109,17 @@
         },
 
         methods: {
+            filterOnCurrentDate(){
+                let todaysDate = new Date().toISOString().substring(0,10);
+                this.$log.debug("Todays date: ", todaysDate);
+                return this.festivals.filter((festival) => {
+                    this.$log.debug(festival.date);
+                    if(date.isInThePast(festival.date)){
+                        return festival;
+                    }
+                });
+            },
+
             extractDates() {
 
                 let dates = [];

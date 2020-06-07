@@ -24,6 +24,7 @@
                         <vs-list-header title="Artists"></vs-list-header>
                     </vs-list>
                     <vs-button type="line" line-origin="left" @click="navigateBack">Go back</vs-button>
+                    <vs-button type="line" line-orgin="left" @click="$router.push(`/events/${festival.id}/edit`)">Edit</vs-button>
                 </vs-card>
             </div>
         </vs-col>

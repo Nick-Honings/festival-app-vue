@@ -34,6 +34,7 @@
     import moment from "moment";
     import DateDropdown from 'vue-date-dropdown';
     import api from '../../../api/festival';
+    import user from '../../../auth/modules/user';
 
     export default {
         name: "AddFestival2",
@@ -93,8 +94,10 @@
                     date: this.formatTimeString(this.festival.date),
                     price: this.festival.price,
                     location: this.festival.location,
-                    time: this.festival.time
+                    time: this.festival.time,
+                    user: user.state.profile.id
                 };
+                this.$log.debug('the event added: ', newEvent);
                 this.$emit('add-general', newEvent);
             },
 
