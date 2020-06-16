@@ -7,13 +7,13 @@
                 </vs-navbar-title>
             </div>
 
-            <p>Welcome {{name}}</p>
 
-            <vs-nav-item v-if="isProfileLoaded" index="1">
-                <router-link to="/profile">Profile</router-link>
-            </vs-nav-item>
+
+            <vs-navbar-item v-if="isProfileLoaded && isAuthenticated" index="1">
+                <p>Welcome {{name}}</p>
+            </vs-navbar-item>
             <vs-navbar-item v-if="isAuthenticated" index="0">
-                <vs-button @click="logout">Logout</vs-button>
+                <vs-button type="line" @click="logout">Logout</vs-button>
             </vs-navbar-item>
 
         </vs-navbar>

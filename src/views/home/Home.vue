@@ -8,7 +8,7 @@
             <div v-if="!isAuthenticated && authStatus !== 'loading'">
                 <vs-row vs-justify="center">
                     <vs-col type="flex" vs-justify="center" vs-align="center">
-                        <vs-card >
+                        <vs-card style="background-color: rgba(255,255,255,0.6); margin-top: 40%">
                             <div slot="header">
                                 Welcome to Events Planner
                             </div>
@@ -22,8 +22,6 @@
                         </vs-card>
                     </vs-col>
                 </vs-row>
-
-
             </div>
         </center-container>
 

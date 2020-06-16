@@ -2,15 +2,16 @@
     <div id="app">
         <vs-row >
             <vs-col vs-w="12">
-                <Navigationbar />
+                <Navigationbar/>
             </vs-col>
         </vs-row>
         <vs-row>
             <div class="layout-main">
-                <vs-col vs-w="1">
+                <vs-col vs-w="3">
+                    <VxSidebar v-if="isAuthenticated"/>
                 </vs-col>
             </div>
-            <vs-col vs-w="11">
+            <vs-col vs-w="12">
                 <div>
                     <router-view/>
                 </div>

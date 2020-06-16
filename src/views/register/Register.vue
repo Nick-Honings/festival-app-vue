@@ -2,7 +2,8 @@
     <div>
         <center-container>
             <vs-row vs-justify="center">
-                <vs-col type="flex" vs-justify="center" vs-align="center">
+
+                <vs-col type="flex" vs-justify="center" vs-align="center" vs-w="3">
                     <vs-card>
                         <div slot="header">
                             Register
@@ -10,6 +11,7 @@
                         <RegisterForm v-on:register="signUp"/>
                     </vs-card>
                 </vs-col>
+                <vc-col vs-w="3"></vc-col>
             </vs-row>
         </center-container>
     </div>

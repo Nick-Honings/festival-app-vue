@@ -33,6 +33,7 @@
     "vue-form-generator": "^2.3.4",
     "vue-fullcalendar": "^1.0.9",
     "vue-router": "^3.1.6",
+    "vue-sidebar-menu": "^4.5.4",
     "vuejs-logger": "^1.5.4",
     "vuelidate": "^0.7.5",
     "vuesax": "^3.11.13",
@@ -61,7 +62,10 @@
     "sass": "^1.19.0",
     "sass-loader": "^8.0.0",
     "vue-jest": "^3.0.5",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.11",
+    "webpack": "^4.43.0",
+    "webpack-bundle-analyzer": "^3.8.0",
+    "webpack-cli": "^3.3.11"
   },
   "eslintConfig": {
     "root": true,

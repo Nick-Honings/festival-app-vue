@@ -75,7 +75,7 @@ export default {
             this.$log.info('endedit is called');
             festivalApi.update(event).then((response) => {
                 this.$log.info(response);
-                if(response.status == 200){
+                if(response.status === 200){
                     this.$vs.notify({
                         color:'success',
                         title:'Event saved',

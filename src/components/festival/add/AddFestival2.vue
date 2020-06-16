@@ -93,8 +93,10 @@
                     date: this.formatTimeString(this.festival.date),
                     price: this.festival.price,
                     location: this.festival.location,
-                    time: this.festival.time
+                    time: this.festival.time,
+                    applicationuser_id: this.$store.getters.getProfile.id
                 };
+                this.$log.debug('the event added: ', newEvent);
                 this.$emit('add-general', newEvent);
             },
 

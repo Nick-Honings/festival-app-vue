@@ -36,7 +36,6 @@
             festival: Object
         },
 
-
         data(){
             return {
                 activePrompt:false,

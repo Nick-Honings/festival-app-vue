@@ -2,7 +2,7 @@
     <vs-row vs-justify="center" vs-align="center" vs-w="12">
         <vs-col type="flex" vs-justify="center" vs-align="center" vs-w="6">
             <div v-if="isLoaded">
-                <vs-card class="cardx">
+                <vs-card style="background-color: rgba(255,255,255,0.6)" class="cardx">
                     <div slot="header">
                         <h1>{{this.festival.name}}</h1>
 
@@ -24,6 +24,7 @@
                         <vs-list-header title="Artists"></vs-list-header>
                     </vs-list>
                     <vs-button type="line" line-origin="left" @click="navigateBack">Go back</vs-button>
+                    <vs-button type="line" line-orgin="left" @click="$router.push(`/events/${festival.id}/edit`)">Edit</vs-button>
                 </vs-card>
             </div>
         </vs-col>

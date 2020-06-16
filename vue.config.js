@@ -1,5 +1,9 @@
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const webpack = require('webpack');
+
 module.exports = {
     runtimeCompiler: true,
+
 
     // devServer: {
     //     historyApiFallback: true,
@@ -7,5 +11,15 @@ module.exports = {
     //     noInfo: true,
     //     overlay: true
     // }
+    configureWebpack: {
+        mode: 'development',
+        plugins: [
+            new BundleAnalyzerPlugin(),
+            new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
+        ]
+    }
+
+
+
 };
 

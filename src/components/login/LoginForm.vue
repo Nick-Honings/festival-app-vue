@@ -45,9 +45,8 @@
 
 <script>
     import validator from '../../validators/general'
-
+    import store from '../../auth/index'
     import {AUTH_REQUEST} from "../../auth/actions/auth";
-    import { TOKEN} from "../../api/request-config";
 
     export default {
         name: "LoginForm",
@@ -64,14 +63,23 @@
                 firstTimeView: true
             };
         },
+
+        created() {
+            this.$store.subscribe((mutation) => {
+                if(mutation.type === "USER_SUCCESS"){
+                    this.$log.debug("executed");
+                    //this.$router.push('/dashboard');
+                }
+            })
+        },
+
         methods: {
             login: function () {
                 const { username, password } = this;
-                this.$store.dispatch(AUTH_REQUEST, { username, password }).then(() => {
-
-                    console.log("Token set:", TOKEN);
-                    this.$router.push("/dashboard");
-
+                store.dispatch(AUTH_REQUEST, { username, password }).then(() => {
+                    this.$log.debug("successfull authentication");
+                    console.log("login test", store.getters.isAuthenticated);
+                    this.$router.push('/dashboard');
                 });
             }
         },
@@ -79,12 +87,7 @@
         watch: {
             "username": function(value) {
                 this.username = value;
-                if(validator.isNullOrEmpty(value) === false) {
-                    this.validModel.username = true;
-                }
-                else {
-                    this.validModel.username = false;
-                }
+                this.validModel.username = validator.isNullOrEmpty(value) === false;
             },
 
             "password": function(value) {

@@ -12,6 +12,17 @@ import router from './router'
 import Vuelidate from 'vuelidate';
 import VCalendar from 'v-calendar';
 
+import Vuetify from 'vuetify'
+import DaySpanVuetify from 'dayspan-vuetify'
+import 'vuetify/dist/vuetify.css'
+import 'material-design-icons-iconfont/dist/material-design-icons.css'
+import 'dayspan-vuetify/dist/lib/dayspan-vuetify.min.css'
+import CenterContainer from "./components/layout/positioning/center-container/CenterContainer";
+import Loading from "./components/layout/loading/Loading";
+
+import VueSidebarMenu from "vue-sidebar-menu";
+import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
+
 Vue.config.productionTip = false;
 
 import { Carousel3d} from 'vue-carousel-3d';
@@ -37,18 +48,12 @@ Vue.use(Carousel3d);
 Vue.use(VCalendar, {
   componentPrefix: 'vc'
 });
+Vue.use(VueSidebarMenu);
 
 
 //Configure this to only add the used components
 Vue.use(Vuesax);
 
-import Vuetify from 'vuetify'
-import DaySpanVuetify from 'dayspan-vuetify'
-import 'vuetify/dist/vuetify.css'
-import 'material-design-icons-iconfont/dist/material-design-icons.css'
-import 'dayspan-vuetify/dist/lib/dayspan-vuetify.min.css'
-import CenterContainer from "./components/layout/positioning/center-container/CenterContainer";
-import Loading from "./components/layout/loading/Loading";
 
 Vue.config.productionTip = false
 

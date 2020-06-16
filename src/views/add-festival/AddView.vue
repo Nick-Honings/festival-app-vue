@@ -1,8 +1,8 @@
 <template>
     <div>
         <vs-row vs-justify="center">
-            <vs-col type="flex" vs-justify="center" vs-align="center" vs-w="6">
-                <vs-card class="cardx">
+            <vs-col type="flex" vs-justify="center" vs-align="center" vs-w="3">
+                <vs-card style="background-color: rgba(255,255,255,0.6); padding-top: 20px" class="cardx">
 
                     <vs-tabs v-model="selectedView">
                         <vs-tab @click="selectedView = 0" label="General">
@@ -55,10 +55,10 @@
 </template>
 
 <script>
-    import AddArea from "./AddArea";
-    import AddFestival2 from "./AddFestival2";
-    import AddArtist from "../../artist/AddArtist";
-    import api from "../../../api/festival";
+    import AddArea from "../../components/festival/add/AddArea";
+    import AddFestival2 from "../../components/festival/add/AddFestival2";
+    import AddArtist from "../../components/artist/AddArtist";
+    import api from "../../api/festival";
 
     export default {
         name: "AddView",
@@ -125,6 +125,7 @@
                     price: this.festival.price,
                     location: this.festival.location,
                     time: this.festival.time,
+                    applicationuser_id: this.festival.applicationuser_id,
                     areas: this.areas
                 }
 
