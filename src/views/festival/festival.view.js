@@ -1,7 +1,7 @@
 import api from '../../api/festival';
 import FestivalItem from "../../components/festival/festival-item/FestivalItem";
 import AddFestival2 from "../../components/festival/add/AddFestival2";
-
+import store from '../../auth/index';
 
 const FestivalPage = {
     name: 'FestivalPage',
@@ -26,7 +26,7 @@ const FestivalPage = {
 
     // Load all
     mounted() {
-        return api.getAllByUserId(19)
+        return api.getAllByUserId(store.getters.getProfile.id)
             .then(response => {
                 this.$log.debug("Data loaded: ", response.data)
                 this.festivals = response.data

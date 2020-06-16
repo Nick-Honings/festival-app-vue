@@ -2,7 +2,7 @@
     <vs-row vs-justify="center" vs-align="center" vs-w="12">
         <vs-col type="flex" vs-justify="center" vs-align="center" vs-w="6">
             <div v-if="isLoaded">
-                <vs-card class="cardx">
+                <vs-card style="background-color: rgba(255,255,255,0.6)" class="cardx">
                     <div slot="header">
                         <h1>{{this.festival.name}}</h1>
 
@@ -10,7 +10,7 @@
                     <div>
                         <span>
                             <vs-collapse >
-                                <vs-collapse-item open=true>
+                                <vs-collapse-item>
                                     <div slot="header">
                                         General Information
                                     </div>
@@ -30,7 +30,7 @@
                                     </div>
 
                                 </vs-collapse-item>
-                                <vs-collapse-item open=true>
+                                <vs-collapse-item >
                                     <div slot="header">
                                         Area information
                                     </div>
@@ -42,14 +42,17 @@
                                         </div>
                                     </div>
                                 </vs-collapse-item>
-                                <vs-collapse-item open=true>
+                                <vs-collapse-item >
                                     <div slot="header">
                                         Artist Information
                                     </div>
                                     <div class="content">
-                                        <div v-for="(artist, index) in festival.areas.artists" :key="index">
-                                            <vs-input type="text" label="Name" v-model="artist.name"></vs-input>
-                                            <vs-input type="text" label="Genre" v-model="artist.genre"></vs-input>
+                                        <div v-for="(area, index) in festival.areas" :key="index">
+                                            <div v-for="(artist, j) in area.artists" :key="j">
+                                                <vs-input type="text" label="Name" v-model="artist.name"></vs-input>
+                                                <vs-input type="text" label="Genre" v-model="artist.genre"></vs-input>
+                                            </div>
+
                                         </div>
                                     </div>
                                 </vs-collapse-item>
@@ -120,6 +123,7 @@
                 router.go(-1);
             },
             save() {
+                this.festival.date = this.formatTimeString(this.festival.date);
                 festivalApi.update(this.festival).then((response) => {
                     this.$log.info(response);
                     if(response.status === 200){
@@ -129,7 +133,12 @@
                         })
                     }
                 })
-            }
+            },
+            formatTimeString(value) {
+                let format = value.replace(/\./g, '-');
+                this.$log.debug(format);
+                return format.split("-").reverse().join("-");
+            },
         }
     }
 </script>
