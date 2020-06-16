@@ -1,26 +1,31 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import store from '../auth/index';
 
-import store from '../auth';
-import Account from "../views/account/Account";
 
 Vue.use(VueRouter);
 
-const ifNotAuthenticated = (to, from, next) => {
-  if(!store.getters.isAuthenticated) {
-    next();
-    return;
-  }
-  next("/");
-};
+// const ifNotAuthenticated = (to, from, next) => {
+//   if(!store.getters.isAuthenticated) {
+//     console.log("going to next.... from isNotAuthenticated");
+//     next("/");
+//     return;
+//   }
+//   console.log("going to /.... from isNotAuthenticated");
+//
+//   next();
+// };
+//
+// const ifAuthenticated = (to, from, next) => {
+//   if (store.getters.isAuthenticated){
+//     console.log("going to next.... from isAuthenticated");
+//     next();
+//     return;
+//   }
+//   console.log("going to /... from isAuthenticated")
+//   next("/");
+// };
 
-const ifAuthenticated = (to, from, next) => {
-  if (store.getters.isAuthenticated){
-    next();
-    return;
-  }
-  next("/");
-};
 
 
 const routes = [
@@ -28,61 +33,61 @@ const routes = [
     path: '/',
     name: 'Home',
     component: () => import("../views/home/Home"),
-
+    //beforeEnter: ifNotAuthenticated
   },
   {
     path: "/account",
     name: "Account",
-    component: Account,
-    beforeEnter: ifAuthenticated
+    component: () => import("../views/account/Account"),
+    //beforeEnter: ifAuthenticated
   },
 
   {
     path: '/events',
     name: 'Events',
     component: () => import('../views/festival/festival'),
-    beforeEnter: ifAuthenticated
+    //beforeEnter: ifAuthenticated
   },
   {
     path: '/events/add',
     name: 'Test',
     component: () => import('../views/add-festival/AddView'),
-    beforeEnter: ifAuthenticated
+    //beforeEnter: ifAuthenticated
   },
   {
     path: '/events/:id/info',
     name: 'Event information',
     component: () => import('../components/festival/festival-summary/FestivalSummary'),
-    beforeEnter: ifAuthenticated
+    //beforeEnter: ifAuthenticated
   },
   {
     path: '/events/:id/edit',
     name: 'Edit event',
     component: () => import('../components/festival/festival-item/edit-festival/EditFestivalFull'),
-    beforeEnter: ifAuthenticated
+    //beforeEnter: ifAuthenticated
   },
   {
     path: '/calendar',
     name: 'Calendar',
     component: () => import('../views/calendar/Calendar2'),
-    beforeEnter: ifAuthenticated
+    //beforeEnter: ifAuthenticated
   },
   {
     path: '/dashboard',
     name: 'Dashboard',
     component: () => import('../views/dashboard/Dashboard'),
-    beforeEnter: ifAuthenticated
+    //beforeEnter: ifAuthenticated
   },
   {
     path: '/register',
     name: 'Register',
     component: () => import('../views/register/Register'),
-    beforeEnter: ifNotAuthenticated
+    // beforeEnter: ifNotAuthenticated
   }
-
-
-
 ]
+
+
+
 
 const router = new VueRouter({
   mode: 'history',
@@ -90,5 +95,15 @@ const router = new VueRouter({
   routes
 })
 
+router.beforeEach((to, from, next) => {
+  if(to.name !== 'Home' && !store.getters.isAuthenticated) {
+    console.log("authenticated?", store.getters.isAuthenticated);
+    next({name: 'Home'});
+    console.log("not authenticated");
+  }
+  else{
+    next();
+  }
+});
 
 export default router

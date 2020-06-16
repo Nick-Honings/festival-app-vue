@@ -1,15 +1,16 @@
 <template>
     <div>
-        <vs-row vs-w="12">
-            <vs-col vs-w="2"></vs-col>
-            <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="8">
-                <vs-card style="margin-top: 12px">
+        <vs-row vs-justify="center">
+            <vs-col vs-w="3"></vs-col>
+            <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="4">
+                <vs-card style="margin-top: 12px; background-color: rgba(255,255,255,0.6)">
                     <div slot="header">
-                        <h1>Calendar</h1>
+                        <h1>Event calendar</h1>
                     </div>
                     <div>
                         <span>
-                            Text
+                            This is your personal calendar. You will find every event you have planned in here.
+                            If you do not see any events here, try adding it in the events tab.
                         </span>
                     </div>
                 </vs-card>
@@ -18,11 +19,11 @@
         </vs-row>
 
 
-        <vs-row vs-w="12" >
-            <vs-col vs-w="2"></vs-col>
-            <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="8">
+        <vs-row vs-justify="center">
+            <vs-col vs-w="3"></vs-col>
+            <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="4">
                 <vc-calendar
-                        style="margin-top: 12px"
+                        style="margin-top: 12px; background-color: rgba(255,255,255,0.6)"
                         :theme="themeStyles"
                         nav-visibility="hover"
                         is-expanded
@@ -33,9 +34,9 @@
             <vs-col vs-w="2"></vs-col>
         </vs-row>
 
-        <vs-row>
-            <vs-col vs-w="2"></vs-col>
-            <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="8">
+        <vs-row vs-justify="center">
+            <vs-col vs-w="3" ></vs-col>
+            <vs-col vs-type="flex" vs-justify="center" vs-align="center" vs-w="4">
                 <Upcoming :festivals="filterOnCurrentDate()" v-if="festivals"/>
             </vs-col>
             <vs-col vs-w="2"></vs-col>
@@ -93,8 +94,10 @@
                 ],
             };
         },
+
         created() {
-            api.getAllByUserId(19)
+            let id = this.getCurrentUserId();
+            api.getAllByUserId(id)
                 .then(response => {
                     this.$log.debug("Data loaded: ", response.data)
                     this.festivals = response.data
@@ -147,6 +150,12 @@
                     this.$router.push(`/events/${id}/info`);
                 }
 
+            },
+
+            getCurrentUserId() {
+                let id = this.$store.getters.getProfile.id;
+                this.$log.debug("the id: ", id);
+                return id;
             }
         }
     }

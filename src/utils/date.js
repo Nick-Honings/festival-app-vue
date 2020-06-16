@@ -23,5 +23,15 @@ export default {
         let toCompare = new Date(date);
         return today <= toCompare;
 
+    },
+
+    filterOnCurrentDate(festivals){
+        return festivals.filter((festival) => {
+            if(this.isInThePast(festival.date)) {
+                return festival;
+            }
+        })
     }
+
+
 }

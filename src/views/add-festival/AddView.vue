@@ -125,7 +125,7 @@
                     price: this.festival.price,
                     location: this.festival.location,
                     time: this.festival.time,
-                    user: this.festival.user,
+                    applicationuser_id: this.festival.applicationuser_id,
                     areas: this.areas
                 }
 

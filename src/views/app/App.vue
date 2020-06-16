@@ -8,7 +8,7 @@
         <vs-row>
             <div class="layout-main">
                 <vs-col vs-w="3">
-                    <VxSidebar/>
+                    <VxSidebar v-if="isAuthenticated"/>
                 </vs-col>
             </div>
             <vs-col vs-w="12">

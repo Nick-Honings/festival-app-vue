@@ -1,5 +1,5 @@
 <template>
-    <vs-card style="margin-top: 12px" >
+    <vs-card style="margin-top: 12px; background-color: rgba(255,255,255,0.6)" >
         <vs-list>
             <vs-list-header title="Upcoming"></vs-list-header>
             <div  v-bind:key="festival.date" v-for="(festival, index) in festivals">

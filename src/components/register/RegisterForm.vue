@@ -4,7 +4,7 @@
             <vs-col>
                 <h1>Sign in</h1>
             </vs-col>
-            <vs-col>
+            <vs-col vs-justify="center" vs-align="center">
                 <div id="username-input">
                     <vs-input
                             name="username"

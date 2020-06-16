@@ -33,6 +33,7 @@ const actions = {
                     resolve(resp);
                 })
                 .catch(err => {
+                    console.log(err)
                     commit(AUTH_ERROR, err);
                     localStorage.removeItem('user-token');
                     reject(err);

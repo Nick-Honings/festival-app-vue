@@ -5,7 +5,7 @@
         </div>
         <div v-else>
             <vs-list-item :title="area.name" :subtitle="area.genre">
-                <vs-button type="flat" icon="create"></vs-button>
+
             </vs-list-item>
         </div>
     </div>
