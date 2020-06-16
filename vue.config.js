@@ -3,6 +3,7 @@ const webpack = require('webpack');
 
 module.exports = {
     runtimeCompiler: true,
+    publicPath: '/festival-app-vue/',
 
 
     // devServer: {
