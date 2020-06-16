@@ -7,7 +7,8 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "test": "jest",
-    "test-silent": "jest --silent"
+    "test-silent": "jest --silent",
+    "install": "npm install"
   },
   "dependencies": {
     "@auth0/auth0-spa-js": "^1.8.1",
